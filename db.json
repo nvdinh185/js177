@@ -1,0 +1,36 @@
+{
+  "courses": [
+    {
+      "name": "MANCHESTER UNITED",
+      "description": "Truy cập trang: https://thekingincatsle.github.io/Manchester-United-website/",
+      "id": 1
+    },
+    {
+      "name": "DISCOVER THE WORLD",
+      "description": "Truy cập trang: https://tranhoangkhang1212.github.io/travelix",
+      "id": 3
+    },
+    {
+      "name": "MANCHESTER 1",
+      "description": "Truy cập trang 1",
+      "id": 4
+    },
+    {
+      "name": "Tania",
+      "description": "777",
+      "id": 5
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "DinhNV10",
+      "address": "hue"
+    },
+    {
+      "id": 2,
+      "name": "Dinh123",
+      "address": "Da nang"
+    }
+  ]
+}
