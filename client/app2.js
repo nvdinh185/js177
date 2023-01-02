@@ -98,16 +98,16 @@ async function handleUpdateCourse(id) {
     }
 }
 
-// xử lí form create
+// xử lý form create
 function handleCreateForm() {
     var createBtn = document.querySelector('#createBtn');
     createBtn.onclick = async function () {
-        var name = document.querySelector('input[name="name"]').value;
-        var description = document.querySelector('input[name="description"]').value;
+        var name = document.querySelector('input[name="name"]');
+        var description = document.querySelector('input[name="description"]');
 
         var formData = {
-            name: name,
-            description: description
+            name: name.value,
+            description: description.value
         }
 
         var options = {
@@ -122,6 +122,8 @@ function handleCreateForm() {
             .then(function (response) {
                 return response.json();
             });
+        name.value = '';
+        description.value = '';
         const htmls = renderCourse(course);
         var listCoursesBlock = document.querySelector('#list-courses');
         listCoursesBlock.innerHTML += htmls;
