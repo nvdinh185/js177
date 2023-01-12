@@ -5,7 +5,7 @@ var courseApi = 'http://localhost:3000/courses';
 function start() {
     getCourses();
 
-    handleCreateForm();
+    // handleCreateForm();
 }
 start();
 
@@ -29,7 +29,7 @@ async function getCourses() {
     var htmls = courses.map(function (course) {
         return renderCourse(course);
     })
-    listCoursesBlock.innerHTML = htmls.join('');
+    listCoursesBlock.innerHTML = htmls;
 }
 
 // xử lý delete course
@@ -97,33 +97,33 @@ async function handleUpdateCourse(id) {
 }
 
 // xử lý form create
-function handleCreateForm() {
-    var createBtn = document.querySelector('#createBtn');
-    createBtn.onclick = async function () {
-        var name = document.querySelector('input[name="name"]');
-        var description = document.querySelector('input[name="description"]');
+// function handleCreateForm() {
+var createBtn = document.querySelector('#createBtn');
+createBtn.onclick = async function () {
+    var name = document.querySelector('input[name="name"]');
+    var description = document.querySelector('input[name="description"]');
 
-        var formData = {
-            name: name.value,
-            description: description.value
-        }
-
-        var options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }
-
-        const course = await fetch(courseApi, options)
-            .then(function (response) {
-                return response.json();
-            });
-        name.value = '';
-        description.value = '';
-        const htmls = renderCourse(course);
-        var listCoursesBlock = document.querySelector('#list-courses');
-        listCoursesBlock.innerHTML += htmls;
+    var formData = {
+        name: name.value,
+        description: description.value
     }
+
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }
+
+    const course = await fetch(courseApi, options)
+        .then(function (response) {
+            return response.json();
+        });
+    name.value = '';
+    description.value = '';
+    const htmls = renderCourse(course);
+    var listCoursesBlock = document.querySelector('#list-courses');
+    listCoursesBlock.innerHTML += htmls;
 }
+// }
