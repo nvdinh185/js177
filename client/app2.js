@@ -85,16 +85,14 @@ async function handleUpdateCourse(id) {
             .then(function (response) {
                 return response.json();
             });
+        const htmls = renderCourse(course);
         var courseItem = document.querySelector('.course-item-' + id);
         if (courseItem) {
-            courseItem.remove();
+            courseItem.innerHTML = htmls;
         }
         updateBtn.remove();
         name.value = '';
         description.value = '';
-        const htmls = renderCourse(course);
-        var listCoursesBlock = document.querySelector('#list-courses');
-        listCoursesBlock.innerHTML += htmls;
     }
 }
 
