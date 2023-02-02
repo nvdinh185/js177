@@ -1,13 +1,7 @@
 // lưu api fake
 var courseApi = 'http://localhost:3000/courses';
 
-// viết hàm start
-function start() {
-    getCourses();
-
-    // handleCreateForm();
-}
-start();
+getCourses();
 
 function renderCourse(course) {
     return `<li class="course-item-${course.id}">
@@ -97,7 +91,6 @@ async function handleUpdateCourse(id) {
 }
 
 // xử lý form create
-// function handleCreateForm() {
 var createBtn = document.querySelector('#createBtn');
 createBtn.onclick = async function () {
     var name = document.querySelector('input[name="name"]');
@@ -126,4 +119,3 @@ createBtn.onclick = async function () {
     var listCoursesBlock = document.querySelector('#list-courses');
     listCoursesBlock.innerHTML += htmls;
 }
-// }
