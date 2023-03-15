@@ -6,4 +6,6 @@ fetch(ApiCourses)
     })
     .then(function (courses) {
         console.log(courses);
+    }).catch(function (error) {
+        console.log(error);
     })

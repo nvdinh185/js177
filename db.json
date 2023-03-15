@@ -1,15 +1,9 @@
 {
-  "courses": [],
-  "students": [
+  "courses": [
     {
-      "id": 1,
-      "name": "DinhNV10",
-      "address": "hue"
-    },
-    {
-      "id": 2,
-      "name": "Dinh123",
-      "address": "Da nang"
+      "name": "Javascript cơ bản",
+      "description": "Đây là mô tả của khoá học javascript cơ bản",
+      "id": 1
     }
   ]
 }

@@ -9,7 +9,7 @@ function start() {
 }
 start();
 
-// viết hàm gọi  api lấy dữ liệu render ra giao diện xử dụng fetch
+// viết hàm gọi  api lấy dữ liệu render ra giao diện sử dụng fetch
 function getCourses(callback) {
     fetch(courseApi)
         .then(function (response) {
