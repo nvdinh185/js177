@@ -1,4 +1,4 @@
-// lưu api fake
+// link api fake
 var courseApi = 'http://localhost:3000/courses';
 
 getCourses();
@@ -12,7 +12,7 @@ function renderCourse(course) {
             </li>`
 }
 
-// viết hàm gọi api lấy dữ liệu render ra giao diện sử dụng fetch
+// viết hàm gọi api lấy dữ liệu render ra giao diện
 async function getCourses() {
     var courses = await axios({
         method: "GET",
@@ -30,16 +30,43 @@ async function getCourses() {
 
 // xử lý delete course
 async function handleDeleteCourse(id) {
-    await axios({
-        method: "DELETE",
-        url: courseApi + '/' + id,
-        headers: { "Content-Type": "application/json" }
+    if (confirm("Bạn có chắc muốn xóa?")) {
+        await axios({
+            method: "DELETE",
+            url: courseApi + '/' + id,
+            headers: { "Content-Type": "application/json" }
+        })
+
+        var courseItem = document.querySelector('.course-item-' + id);
+        if (courseItem) {
+            courseItem.remove();
+        }
+    }
+}
+
+// xử lý form create
+var createBtn = document.querySelector('#createBtn');
+createBtn.onclick = async function () {
+    var name = document.querySelector('input[name="name"]');
+    var description = document.querySelector('input[name="description"]');
+
+    var formData = {
+        name: name.value,
+        description: description.value
+    }
+
+    var course = await axios({
+        method: "POST",
+        url: courseApi,
+        data: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
     })
 
-    var courseItem = document.querySelector('.course-item-' + id);
-    if (courseItem) {
-        courseItem.remove();
-    }
+    name.value = '';
+    description.value = '';
+    const htmls = renderCourse(course.data);
+    var listCoursesBlock = document.querySelector('#list-courses');
+    listCoursesBlock.innerHTML += htmls;
 }
 
 // xử lý update course
@@ -84,29 +111,4 @@ async function handleUpdateCourse(id) {
         name.value = '';
         description.value = '';
     }
-}
-
-// xử lý form create
-var createBtn = document.querySelector('#createBtn');
-createBtn.onclick = async function () {
-    var name = document.querySelector('input[name="name"]');
-    var description = document.querySelector('input[name="description"]');
-
-    var formData = {
-        name: name.value,
-        description: description.value
-    }
-
-    var course = await axios({
-        method: "POST",
-        url: courseApi,
-        data: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" },
-    })
-
-    name.value = '';
-    description.value = '';
-    const htmls = renderCourse(course.data);
-    var listCoursesBlock = document.querySelector('#list-courses');
-    listCoursesBlock.innerHTML += htmls;
 }
