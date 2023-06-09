@@ -22,9 +22,10 @@ async function getCourses() {
     courses = courses.data;
 
     var listCoursesBlock = document.querySelector('#list-courses');
-    var htmls = courses.map(function (course) {
-        return renderCourse(course);
-    })
+    var htmls = '';
+    for (const course of courses) {
+        htmls += renderCourse(course);
+    }
     listCoursesBlock.innerHTML = htmls;
 }
 
@@ -58,7 +59,7 @@ createBtn.onclick = async function () {
     var course = await axios({
         method: "POST",
         url: courseApi,
-        data: JSON.stringify(formData),
+        data: formData,
         headers: { "Content-Type": "application/json" },
     })
 
@@ -98,7 +99,7 @@ async function handleUpdateCourse(id) {
         var course = await axios({
             method: "PUT",
             url: courseApi + "/" + id,
-            data: JSON.stringify(formData),
+            data: formData,
             headers: { "Content-Type": "application/json" },
         })
 
