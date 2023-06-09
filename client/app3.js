@@ -106,7 +106,7 @@ createBtn.onclick = async function () {
 
     name.value = '';
     description.value = '';
-    const htmls = renderCourse(course);
+    const htmls = renderCourse(course.data);
     var listCoursesBlock = document.querySelector('#list-courses');
     listCoursesBlock.innerHTML += htmls;
 }
